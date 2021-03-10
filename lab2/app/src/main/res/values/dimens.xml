@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="avatar_width">150dp</dimen>
+    <dimen name="avatar_height">150dp</dimen>
+    <dimen name="question_size">24sp</dimen>
+    <dimen name="answer_size">16sp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+</resources>
