@@ -1,9 +1,11 @@
 package com.example.lab2
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,12 +55,20 @@ class CustomRecyclerAdapter(private val values: List<Question>, private val onCl
 
 class ListFragment : Fragment() {
 
+    companion object {
+
+        fun newInstance(): ListFragment {
+            return ListFragment()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_list, container, false)
-        val recyclerView = rootView?.findViewById<View>(R.id.recyclerView) as RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = CustomRecyclerAdapter(fillList()){ questionId ->
+        val recyclerView = rootView.findViewById<View>(R.id.recyclerView) as RecyclerView
+        val activity = activity as Context
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = CustomRecyclerAdapter(fillList()) { questionId ->
             val intent = Intent(activity, MainActivity::class.java)
             intent.putExtra("questionId", questionId)
             startActivity(intent)
@@ -66,11 +76,21 @@ class ListFragment : Fragment() {
         return rootView
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context != null) {
+            val resources = context.resources
+            val question = resources.getStringArray(R.array.questions)[0]
+        }
+    }
+
     private fun fillList(): List<Question> {
         val data = mutableListOf<Question>()
         val res: Resources = resources
         val questions = res.getStringArray(R.array.questions)
         val size = questions.size
+        Log.println(Log.DEBUG, "huy", "Filling list")
         for (i in 0 until size) {
             val answersName = "answer${(i + 1).toString().padStart(2, '0')}"
             val avatarName = "avatar${(i + 1).toString().padStart(2, '0')}"
