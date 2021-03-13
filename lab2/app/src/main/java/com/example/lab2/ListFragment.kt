@@ -69,9 +69,12 @@ class ListFragment : Fragment() {
         val activity = activity as Context
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = CustomRecyclerAdapter(fillList()) { questionId ->
-            val intent = Intent(activity, MainActivity::class.java)
-            intent.putExtra("questionId", questionId)
-            startActivity(intent)
+            val fragment: Fragment = DataFragment.newInstance(questionId.toString())
+            this.activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.fragment_container_view, fragment, "questionData")
+                ?.addToBackStack(null)
+                ?.commit()
         }
         return rootView
     }
@@ -90,7 +93,6 @@ class ListFragment : Fragment() {
         val res: Resources = resources
         val questions = res.getStringArray(R.array.questions)
         val size = questions.size
-        Log.println(Log.DEBUG, "huy", "Filling list")
         for (i in 0 until size) {
             val answersName = "answer${(i + 1).toString().padStart(2, '0')}"
             val avatarName = "avatar${(i + 1).toString().padStart(2, '0')}"

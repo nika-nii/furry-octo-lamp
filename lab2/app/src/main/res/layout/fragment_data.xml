@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DataFragment"
-    android:id="@+id/fragment_data">
+    android:orientation="vertical"
+    tools:context=".DataFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/data_fragment_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-</FrameLayout>
+
+    <ImageView
+        android:id="@+id/data_avatar_view"
+        android:layout_width="@dimen/avatar_width"
+        android:layout_height="@dimen/avatar_height"
+        android:contentDescription="@string/avatar" />
+
+    <TextView
+        android:id="@+id/data_question_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/question_size" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/data_answers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
