@@ -67,15 +67,9 @@ class ListFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_list, container, false)
         val recyclerView = rootView.findViewById<View>(R.id.recyclerView) as RecyclerView
         val activity = activity as Context
+        val listener = activity as Listener
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = CustomRecyclerAdapter(fillList()) { questionId ->
-            val fragment: Fragment = DataFragment.newInstance(questionId.toString())
-            this.activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.replace(R.id.fragment_container_view, fragment, "questionData")
-                ?.addToBackStack(null)
-                ?.commit()
-        }
+        recyclerView.adapter = CustomRecyclerAdapter(fillList(), listener.onClickListener)
         return rootView
     }
 
@@ -93,6 +87,7 @@ class ListFragment : Fragment() {
         val res: Resources = resources
         val questions = res.getStringArray(R.array.questions)
         val size = questions.size
+        Log.println(Log.DEBUG, "huy", "Filling list")
         for (i in 0 until size) {
             val answersName = "answer${(i + 1).toString().padStart(2, '0')}"
             val avatarName = "avatar${(i + 1).toString().padStart(2, '0')}"
