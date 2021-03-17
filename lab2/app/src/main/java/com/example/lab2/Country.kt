@@ -18,6 +18,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.squareup.picasso.Picasso
 import okhttp3.*
 import okio.IOException
+import java.time.LocalDate
 import java.util.*
 
 
@@ -116,7 +117,7 @@ class Country : Fragment() {
     private val holidays: MutableList<HolidayItem> = mutableListOf()
 
     private fun getHolidayList() {
-        val year = Date().year.toString()
+        val year = LocalDate.now().year.toString()
         val request = Request.Builder()
             .url("https://date.nager.at/Api/v2/PublicHolidays/$year/$countryAlpha")
             .build()
