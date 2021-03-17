@@ -113,7 +113,7 @@ class Country : Fragment() {
     private val holidayItemListJsonAdapter: JsonAdapter<List<HolidayItem>> =
         moshi.adapter(holidayItemListType)
 
-    private var holidays: MutableList<HolidayItem> = mutableListOf()
+    private val holidays: MutableList<HolidayItem> = mutableListOf()
 
     private fun getHolidayList() {
         val year = Date().year.toString()

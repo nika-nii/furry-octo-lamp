@@ -91,7 +91,7 @@ class CountryList : Fragment() {
     private val countryItemListJsonAdapter: JsonAdapter<List<CountryItem>> =
         moshi.adapter(countryItemListType)
 
-    private var countries: MutableList<CountryItem> = mutableListOf()
+    private val countries: MutableList<CountryItem> = mutableListOf()
 
     private fun getCountryList() {
         val request = Request.Builder()
