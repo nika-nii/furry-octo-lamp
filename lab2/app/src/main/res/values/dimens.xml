@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="avatar_width">150dp</dimen>
-    <dimen name="avatar_height">150dp</dimen>
-    <dimen name="question_size">24sp</dimen>
-    <dimen name="answer_size">16sp</dimen>
+    <dimen name="flag_size">64dp</dimen>
+    <dimen name="country_name_size">24sp</dimen>
+    <dimen name="country_official_size">16sp</dimen>
+    <dimen name="country_region_size">14sp</dimen>
+    <dimen name="holiday_name_size">20sp</dimen>
+    <dimen name="holiday_main_size">16sp</dimen>
     <dimen name="card_margin">8dp</dimen>
 </resources>
